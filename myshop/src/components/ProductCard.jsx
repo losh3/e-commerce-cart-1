@@ -32,7 +32,7 @@ function ProductCard({ products }) {
             <div className="card-body">
               <h6 className="card-subtitle mb-1 text-muted">{category}</h6>
               <h5 className="card-title">{title}</h5>
-              <StarRating rating={rating} />
+              <p>Rating: {rating}</p>
               <h5>${price}</h5>
             </div>
           </div>
