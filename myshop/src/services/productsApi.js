@@ -1,7 +1,7 @@
 export const getProducts = async () => {
   try {
     const response = await fetch(
-      "https://dummyjson.com/products?limit=20&skip=40&select=images,title,price,rating,category,discountPercentage,id"
+      "https://dummyjson.com/products?limit=190"
     );
     const data = await response.json();
     return data;

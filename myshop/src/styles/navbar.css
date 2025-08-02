@@ -1,0 +1,12 @@
+.icon-hover {
+    border-radius: 10px;
+    padding: 0.2rem 0.5rem;
+    font-size: 2rem;
+    transition: 0.2s ease; 
+    cursor: pointer;
+  }
+  
+  .icon-hover:hover {
+    background-color: #c9c9c9;
+    transform: scale(1.5); /* Crece al hacer hover */
+  }
