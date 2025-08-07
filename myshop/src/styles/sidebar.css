@@ -1,0 +1,53 @@
+.sidebar {
+    background-color: #f8f9fa;
+    height: 100vh;
+    overflow-y: auto;
+    transition: width 0.3s;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    z-index: 1000;
+  }
+.sidebar-header{
+    font-size: 1.2rem;
+
+}
+  /* OPEN (expandidas las categorías) */
+  .sidebar.open {
+    width: 300px;
+  }
+  
+  /* COLLAPSED (solo iconos) */
+  .sidebar.collapsed {
+    align-items: center;
+    width: 70px;
+  }
+  
+  /* Botón de toggle solo visible en móviles (usamos d-md-none con Bootstrap) */
+  .toggle-btn {
+    margin-left: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Ocultar textos cuando colapsa */
+  .sidebar.collapsed .sidebar-header span,
+  .sidebar.collapsed .nav .dropdown-label {
+    display: none;
+  }
+  
+  .logo-container {
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar-logo {
+    max-width: 60%;
+    height: auto;
+    transition: width 0.3s;
+  }
+  
+
+  .sidebar.collapsed .sidebar-logo {
+    width: 40px;
+  }
+  

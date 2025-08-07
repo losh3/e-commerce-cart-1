@@ -1,0 +1,27 @@
+.layout-container {
+    overflow: hidden;
+  }
+  
+  /* Contenido se ajusta al tamaño del sidebar */
+  .main-content {
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* Sidebar abierto */
+  .content-expanded {
+    margin-left: 300px;
+  }
+  
+  /* Sidebar colapsado */
+  .content-collapsed {
+    margin-left: 70px;
+  }
+  
+  /* En móvil: el main ocupa todo el ancho, sin margen lateral */
+  @media (max-width: 768px) {
+    .content-expanded,
+    .content-collapsed {
+      margin-left: 0;
+    }
+  }
+  
