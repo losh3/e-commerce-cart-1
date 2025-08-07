@@ -1,53 +1,36 @@
+/* Sidebar general */
 .sidebar {
-    background-color: #f8f9fa;
-    height: 100vh;
-    overflow-y: auto;
-    transition: width 0.3s;
     position: fixed;
-    left: 0;
     top: 0;
-
+    left: 0;
+    height: 100vh;
+    background: white;
+    width: 250px;
+    overflow-y: auto;
+    transition: width 0.3s ease;
     z-index: 1000;
   }
-.sidebar-header{
-    font-size: 1.2rem;
-
-}
-  /* OPEN (expandidas las categorías) */
-  .sidebar.open {
-    width: 300px;
+  
+  /* Oculto en móvil */
+  @media (max-width: 767px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+  
+    .sidebar.open {
+      transform: translateX(0);
+    }
   }
   
-  /* COLLAPSED (solo iconos) */
-  .sidebar.collapsed {
-    align-items: center;
-    width: 70px;
-  }
+  /* En desktop no se oculta, puede estar expandido o colapsado */
+  @media (min-width: 768px) {
+    .sidebar.collapsed {
+      width: 0;
+      overflow: hidden;
+    }
   
-  /* Botón de toggle solo visible en móviles (usamos d-md-none con Bootstrap) */
-  .toggle-btn {
-    margin-left: 10px;
-    margin-bottom: 1rem;
-  }
-  
-  /* Ocultar textos cuando colapsa */
-  .sidebar.collapsed .sidebar-header span,
-  .sidebar.collapsed .nav .dropdown-label {
-    display: none;
-  }
-  
-  .logo-container {
-    margin-bottom: 1rem;
-  }
-  
-  .sidebar-logo {
-    max-width: 60%;
-    height: auto;
-    transition: width 0.3s;
-  }
-  
-
-  .sidebar.collapsed .sidebar-logo {
-    width: 40px;
+    .sidebar.open {
+      transform: translateX(0);
+    }
   }
   
