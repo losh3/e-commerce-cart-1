@@ -13,8 +13,14 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
         {/* Solo renderiza contenido si está abierto */}
         {sidebarOpen && (
           <div className="sidebar-content">
-            <div className="sidebar-header mb-3 h2 px-3">
-              <span className="ms-2">Categorías</span>
+            {/* Botón de cerrar (solo en mobile) */}
+            <div className="d-flex justify-content-end px-3 pt-3 show-only-mobile">
+              <button
+                className="btn btn-outline-secondary btn-sm"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <i className="bi bi-x-lg"></i>
+              </button>
             </div>
 
             <nav className="nav flex-column">

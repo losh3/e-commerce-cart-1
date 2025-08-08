@@ -10,7 +10,7 @@ export default function MainLayout() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        setSidebarOpen(false); // Cierra automáticamente al llegar a 768 o menos
+        setSidebarOpen(false);
       }
     };
 

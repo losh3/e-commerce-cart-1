@@ -21,6 +21,12 @@
       transform: translateX(0);
     }
   }
+  @media (min-width: 769px) {
+    .show-only-mobile {
+      display: none !important;
+    }
+  }
+  
   
   /* En desktop no se oculta, puede estar expandido o colapsado */
   @media (min-width: 768px) {

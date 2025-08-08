@@ -7,12 +7,14 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
   return (
     <header className="bg-light d-flex justify-content-between align-items-center">
       {/* Botón toggle solo visible en móvil */}
-      <button
-        className="btn btn-outline-secondary d-md-none me-2"
-        onClick={() => setSidebarOpen((prev) => !prev)}
-      >
-        <i className={`bi ${sidebarOpen ? "bi-x-lg" : "bi-list"}`}></i>
-      </button>
+      {!sidebarOpen && (
+        <button
+          className="btn btn-outline-secondary me-2"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <i className="bi bi-list"></i>
+        </button>
+      )}
 
       {/* Logo */}
       <NavLink className="navbar-brand d-flex align-items-center m-0" to="/">
