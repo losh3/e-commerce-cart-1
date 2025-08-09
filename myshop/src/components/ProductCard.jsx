@@ -1,4 +1,5 @@
 import StarRating from "./StarRating";
+import { Link } from "react-router-dom";
 import "../styles/productCard.css";
 
 function ProductCard({
@@ -71,7 +72,29 @@ function ProductCard({
         </div>
       </div>
       <div className="card-body d-flex flex-column">
-        <Link></Link>
+        <Link
+          to={`/product/${id}`}
+          className="text-decoration-none text-dark"
+          onClick={onView}
+        >
+          <h5 className="card-title product-title">{title}</h5>
+        </Link>
+        {showCategory && (
+          <small className="text-muted mb-1 text-capitalize">{category}</small>
+        )}
+        <h5 className="card-title mb-2">{price}</h5>
+        <div className="d-flex align-items-center gap-2 mt-auto">
+          {safeRating ? (
+            <>
+              <StarRating rating={safeRating} />
+              <small className="text-body-secondary">
+                ({safeRating.toFixed(1)})
+              </small>
+            </>
+          ) : (
+            <small>Sin calificación</small>
+          )}
+        </div>
       </div>
     </div>
   );
