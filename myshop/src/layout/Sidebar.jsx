@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CategoriaDropdown from "../components/CategoryDropdown";
-import logotipo from "../assets/logotipo.png";
+import { NavLink } from "react-router-dom";
 import "../styles/sidebar.css";
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
@@ -77,12 +77,12 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <>
       <aside
-        className={`sidebar ${sidebarOpen ? "open" : ""} ${
+        className={`sidebar bg-light ${sidebarOpen ? "open" : "hidden"} ${
           !sidebarOpen && window.innerWidth >= 768 ? "collapsed" : ""
         }`}
       >
         {sidebarOpen && (
-          <div className="sidebar-content">
+          <div className="sidebar-content bg-light">
             {/* Botón de cerrar (solo en mobile) */}
             <div className="d-flex justify-content-end px-3 pt-3 show-only-mobile">
               <button
@@ -106,6 +106,17 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 />
               ))}
             </nav>
+            <div>
+              <NavLink>
+                <i className="bi bi-facebook"></i>
+              </NavLink>
+              <NavLink>
+                <i className="bi bi-twitter-x"></i>
+              </NavLink>
+              <NavLink>
+                <i className="bi bi-instagram"></i>
+              </NavLink>
+            </div>
           </div>
         )}
       </aside>

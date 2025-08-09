@@ -42,15 +42,10 @@ function ProductCard({
             src={imageSrc}
             alt={title}
             className="card-img-top object-fit-contain"
-            style={{ height: "200px", objectFit: "contain" }}
+            style={{ height: "180px", objectFit: "contain" }}
             loading="lazy"
           />
         </Link>
-        {discountPercentage ? (
-          <p className="position-absolute top-0 start-0">
-            -{Math.round(discountPercentage)}%
-          </p>
-        ) : null}
 
         <div className="position-absolute top-0 end-0 d-flex flex-column gap-1">
           <button

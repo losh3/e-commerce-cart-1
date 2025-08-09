@@ -29,7 +29,7 @@ export default function CategoriaDropdown({
       </button>
 
       {isOpen && sidebarOpen && (
-        <div className="dropdown-items mt-1">
+        <div className="dropdown-items">
           {items.map((item, idx) => (
             <NavLink
               to={`/category/${item.value}`}

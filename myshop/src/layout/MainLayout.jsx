@@ -5,35 +5,27 @@ import Header from "./Header";
 import "../styles/mainlayout.css";
 
 export default function MainLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(() => window.innerWidth > 768);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setSidebarOpen(false);
-      }
+      setSidebarOpen(window.innerWidth > 768);
     };
-
-    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <div className="layout-container d-flex">
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+    <div className="layout-container">
+      {/* Header siempre arriba */}
+      <header className="p-3 bg-light border-bottom sticky-top z-3">
+        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      </header>
 
-      <div
-        className={`main-content flex-grow-1 ${
-          sidebarOpen ? "content-expanded" : "content-collapsed"
-        }`}
-      >
-        {/* Header siempre visible */}
-        <div className="p-3 bg-light d-flex justify-content-between align-items-center border-bottom sticky-top z-3 header">
-          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        </div>
-
-        <main>
+      {/* Contenedor con sidebar y contenido */}
+      <div className="layout-body">
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <main className="main-content p-3">
           <Outlet />
         </main>
       </div>

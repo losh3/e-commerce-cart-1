@@ -1,0 +1,36 @@
+.carousel-custom-height {
+    height: 280px;
+  }
+  
+  @media (min-width: 576px) {
+    .carousel-custom-height {
+      height: 320px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .carousel-custom-height {
+      height: 400px;
+    }
+  }
+
+
+/* Agrega esto a tu home.css */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.home-page .product-carousel {
+  transition: transform 0.3s ease;
+}
+
+.home-page .product-carousel-item {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  width: 250px;
+}
