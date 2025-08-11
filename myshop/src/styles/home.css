@@ -34,3 +34,46 @@
   flex: 0 0 auto;
   width: 250px;
 }
+.carousel-item {
+  height: 400px; /* aquí ajustas la altura que quieras */
+  object-fit: cover; /* hace que se recorte manteniendo proporción */
+  object-position: center center; /* centra la imagen vertical y horizontalmente */
+}
+
+@media (max-width: 768px) {
+  .carousel-inner.ratio {
+    --bs-aspect-ratio: 50%; /* reduce altura manteniendo proporción */
+  }
+}
+
+/* Tarjeta de producto responsiva */
+.product-card {
+  width: 100%;
+  max-width: 250px; /* en pantallas grandes */
+  min-width: 150px; /* en pantallas pequeñas */
+  height: auto;
+}
+
+/* home.css */
+.flash-sales-container {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  -webkit-overflow-scrolling: touch; /* suave en iOS */
+}
+
+.flash-sales-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.flash-sales-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.flash-sales-container > div {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}

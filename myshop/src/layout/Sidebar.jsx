@@ -76,23 +76,16 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   return (
     <>
-      <aside
-        className={`sidebar bg-light ${sidebarOpen ? "open" : "hidden"} ${
-          !sidebarOpen && window.innerWidth >= 768 ? "collapsed" : ""
-        }`}
-      >
+      {/* Overlay que cierra al hacer click fuera */}
+      {sidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
+      <aside className={`sidebar ${sidebarOpen ? "open" : "hidden"}`}>
         {sidebarOpen && (
           <div className="sidebar-content bg-light">
-            {/* Botón de cerrar (solo en mobile) */}
-            <div className="d-flex justify-content-end px-3 pt-3 show-only-mobile">
-              <button
-                className="btn btn-outline-secondary btn-sm"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <i className="bi bi-x-lg"></i>
-              </button>
-            </div>
-
             <nav className="nav flex-column">
               {categorias.map((cat, idx) => (
                 <CategoriaDropdown

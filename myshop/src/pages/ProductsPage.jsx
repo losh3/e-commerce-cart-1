@@ -2,12 +2,18 @@ import { getProducts, getProductsByCategory } from "../services/productsApi";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
+import "../styles/productsPage.css";
 
 export default function ProductsPage({ selectedCategory }) {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cart, setCart] = useState([]);
+
+  const handleAddToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,17 +37,22 @@ export default function ProductsPage({ selectedCategory }) {
   if (loading) return <p>Cargando producto...</p>;
   if (error) return <p>Error: {error}</p>;
   if (products.length === 0) return <p>No hay productos</p>;
-
   return (
-    <div className="d-flex flex-wrap gap-3">
-      {products.map((p) => (
-        <ProductCard
-          key={p.id}
-          product={p}
-          onFavorite={(prod) => console.log("fav", prod.id)}
-          onView={(prod) => console.log("view", prod.id)}
-        />
-      ))}
+    <div className="container">
+      <h2>{category}</h2>
+
+      <div className="row">
+        {products.map((p) => (
+          <div key={p.id} className="col-6 col-sm-6 col-md-4 col-lg-3">
+            <ProductCard
+              product={p}
+              onFavorite={(prod) => console.log("fav", prod.id)}
+              onView={(prod) => console.log("view", prod.id)}
+              onAddToCart={handleAddToCart}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

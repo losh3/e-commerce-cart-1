@@ -1,6 +1,7 @@
 import ProductCard from "../components/ProductCard";
 import { useRef } from "react";
 import "../styles/home.css";
+
 import banner_1 from "../assets/banner_1.png";
 import banner_2 from "../assets/banner_2.png";
 import banner_3 from "../assets/banner_3.png";
@@ -12,7 +13,8 @@ export default function Home({ products }) {
   // 2. Función reusable para el desplazamiento
   const handleScroll = (ref, direction) => {
     if (ref.current) {
-      const scrollAmount = direction === "left" ? -300 : 300;
+      const itemWidth = ref.current.firstChild?.offsetWidth || 250;
+      const scrollAmount = direction === "left" ? -itemWidth : itemWidth;
       ref.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -57,7 +59,7 @@ export default function Home({ products }) {
               aria-label="Slide 4"
             ></button>
           </div>
-          <div className="carousel-inner" style={{ height: "500px" }}>
+          <div className="carousel-inner ">
             <div className="carousel-item active">
               <img
                 src={banner_1}
@@ -119,7 +121,7 @@ export default function Home({ products }) {
       </div>
 
       <div className="container mt-4">
-        <div className="d-flex align-items-center mb-4">
+        <div className="d-flex align-items-center mb-3">
           <div
             className="rectangle bg-danger"
             style={{ width: "20px", height: "40px" }}
@@ -128,14 +130,13 @@ export default function Home({ products }) {
         </div>
 
         {/* Carrusel de Flash Sales (8 productos) */}
-        <div className="container my-2">
+        <div className="my-1">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <div className="d-flex justify-content-between align-items-center mb-4">
               <h2 className="fw-bold mb-0">Ofertas Flash</h2>
               <div className="d-flex align-items-center"></div>
             </div>
             <div className="d-flex">
-              {" "}
               <div className="timer-badge bg-light text-dark px-3 py-1 rounded-pill me-3">
                 <i className="bi bi-clock me-2"></i>
                 <span>Termina en 24:00:00</span>
@@ -154,24 +155,15 @@ export default function Home({ products }) {
               </button>
             </div>
           </div>
-
-          <div
-            ref={flashSalesRef}
-            className="d-flex overflow-auto scrollbar-hidden py-3"
-            style={{ gap: "20px", scrollSnapType: "x mandatory" }}
-          >
+          <div className="flash-sales-container" ref={flashSalesRef}>
             {flashSalesProducts.map((product) => (
               <div
                 key={product.id}
-                className="flex-shrink-0 position-relative"
-                style={{ width: "250px", scrollSnapAlign: "start" }}
+                style={{
+                  flex: "0 0 clamp(200px, 25%, 280px)", // responsive
+                }}
               >
                 <ProductCard product={product} />
-                {product.discountPercentage && (
-                  <span className="badge bg-danger position-absolute top-0 start-0 m-2 fs-6">
-                    -{Math.round(product.discountPercentage)}%
-                  </span>
-                )}
               </div>
             ))}
           </div>

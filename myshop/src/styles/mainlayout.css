@@ -29,10 +29,3 @@ header {
   padding: 20px;
   transition: margin-left 0.3s; /* Para animación en desktop */
 }
-
-/* Ajuste para sidebar abierto en desktop */
-@media (min-width: 768px) {
-  .sidebar.open + .main-content {
-    margin-left: 300px; /* Igual al ancho del sidebar */
-  }
-}

@@ -1,6 +1,7 @@
 import StarRating from "./StarRating";
 import { Link } from "react-router-dom";
 import "../styles/productCard.css";
+import { useCart } from "../context/CartContext";
 
 function ProductCard({
   product,
@@ -27,58 +28,75 @@ function ProductCard({
   const safeRating =
     typeof rating === "number" && !isNaN(rating) ? rating : null;
 
+  // ✅ Calcular precio con descuento
+  const discountedPrice = discountPercentage
+    ? (price - (price * discountPercentage) / 100).toFixed(2)
+    : price?.toFixed(2);
+
+  const { addToCart } = useCart();
+
   return (
-    <div
-      className="card product-card"
-      style={{ width: "270px", height: "380px" }}
-    >
-      <div>
+    <div className="product-card">
+      <div className="position-relative">
         <Link
-          to={`{/product/${id}`}
+          to={`/product/${id}`}
           onClick={onView}
-          aria-label={`Ver${title}`}
+          aria-label={`Ver ${title}`}
         >
           <img
             src={imageSrc}
             alt={title}
             className="card-img-top object-fit-contain"
-            style={{ height: "180px", objectFit: "contain" }}
+            style={{ height: "180px" }}
             loading="lazy"
           />
         </Link>
 
-        <div className="position-absolute top-0 end-0 d-flex flex-column gap-1">
+        {discountPercentage && (
+          <span className="badge bg-danger position-absolute top-0 start-0 m-2">
+            {discountPercentage}%
+          </span>
+        )}
+
+        <div className="position-absolute top-0 end-0 d-flex flex-column gap-1 m-2">
           <button
             className="btn btn-sm btn-light p-1 rounded hover-effect"
             onClick={() => onFavorite(product)}
-            aria-label={`Agregar ${title} a favoritos`}
-            type="button"
           >
             <i className="bi bi-heart"></i>
           </button>
           <button
             className="btn btn-sm btn-light p-1 rounded hover-effect"
             onClick={() => onView(product)}
-            aria-label={`Ver ${title}`}
-            type="button"
           >
             <i className="bi bi-eye"></i>
           </button>
         </div>
       </div>
+
       <div className="card-body d-flex flex-column">
         <Link
           to={`/product/${id}`}
           className="text-decoration-none text-dark"
           onClick={onView}
         >
-          <h5 className="card-title product-title">{title}</h5>
+          <h6 className="card-title product-title">{title}</h6>
         </Link>
+
         {showCategory && (
           <small className="text-muted mb-1 text-capitalize">{category}</small>
         )}
-        <h5 className="card-title mb-2">{price}</h5>
-        <div className="d-flex align-items-center gap-2 mt-auto">
+
+        <div className="d-flex align-items-center gap-2 mt-1">
+          <h5 className="mb-0 text-danger">${discountedPrice}</h5>
+          {discountPercentage && (
+            <small className="text-muted text-decoration-line-through">
+              ${price?.toFixed(2)}
+            </small>
+          )}
+        </div>
+
+        <div className="d-flex align-items-center gap-2 mt-2">
           {safeRating ? (
             <>
               <StarRating rating={safeRating} />
@@ -90,6 +108,17 @@ function ProductCard({
             <small>Sin calificación</small>
           )}
         </div>
+      </div>
+      <div>
+        <Link>
+          <button
+            className="btn-add-to-cart"
+            onClick={() => addToCart(product)}
+          >
+            <i className="bi bi-cart-plus me-2"></i>
+            Agregar al carrito
+          </button>
+        </Link>
       </div>
     </div>
   );
