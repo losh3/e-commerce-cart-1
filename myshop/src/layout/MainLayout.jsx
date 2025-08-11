@@ -17,7 +17,7 @@ export default function MainLayout() {
       {/* Contenedor con sidebar y contenido */}
       <div className="layout-body">
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <main className="main-content p-3">
+        <main className="">
           <Outlet />
         </main>
       </div>

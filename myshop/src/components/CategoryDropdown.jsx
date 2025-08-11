@@ -12,12 +12,12 @@ export default function CategoriaDropdown({
   onToggle,
 }) {
   return (
-    <div className="custom-dropdown border-bottom">
+    <div className="custom-dropdown border-bottom p-0">
       <button
-        className="btn w-100 d-flex align-items-center justify-content-between"
+        className="btn w-100 p-2 d-flex align-items-center justify-content-between "
         onClick={onToggle}
       >
-        <div className="d-flex p-2 align-items-center">
+        <div className="d-flex py-2 align-items-center">
           <i className={`bi ${icon}`} style={{ fontSize: "1.3rem" }}></i>
           {sidebarOpen && <span className="ms-2">{label}</span>}
         </div>

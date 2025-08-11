@@ -2,10 +2,12 @@
 import logotipo from "../assets/logotipo.png";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useFavorites } from "../context/FavoriteContext";
 import "../styles/header.css";
 
 export default function Header({ sidebarOpen, setSidebarOpen }) {
   const { cartItems } = useCart();
+  const { favorites } = useFavorites();
 
   return (
     <header className="bg-light d-flex justify-content-between align-items-center p-3">
@@ -28,8 +30,13 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
           Ofertas
         </NavLink>
         <NavLink className="text-black">Mis compras</NavLink>
-        <NavLink to="/favorites" className="nav-link">
+        <NavLink to="/favorites" className="nav-link position-relative">
           <i className="bi bi-heart fs-4"></i>
+          {favorites.length > 0 && (
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {favorites.length}
+            </span>
+          )}
         </NavLink>
         <NavLink to="/cart" className="nav-link position-relative">
           <i className="bi bi-cart fs-4"></i>

@@ -2,13 +2,9 @@ import StarRating from "./StarRating";
 import { Link } from "react-router-dom";
 import "../styles/productCard.css";
 import { useCart } from "../context/CartContext";
+import { useFavorites } from "../context/FavoriteContext";
 
-function ProductCard({
-  product,
-  onFavorite = () => {},
-  onView = () => {},
-  showCategory = false,
-}) {
+function ProductCard({ product, onView = () => {}, showCategory = false }) {
   const {
     id,
     title,
@@ -28,12 +24,26 @@ function ProductCard({
   const safeRating =
     typeof rating === "number" && !isNaN(rating) ? rating : null;
 
-  // ✅ Calcular precio con descuento
   const discountedPrice = discountPercentage
     ? (price - (price * discountPercentage) / 100).toFixed(2)
     : price?.toFixed(2);
 
   const { addToCart } = useCart();
+
+  // ✅ Traer del contexto de favoritos
+  const { favorites, setFavorites } = useFavorites();
+
+  const addToFavorites = (product) => {
+    setFavorites((prev) => {
+      const exists = prev.some((item) => item.id === product.id);
+      if (exists) {
+        return prev.filter((item) => item.id !== product.id);
+      }
+      return [...prev, product];
+    });
+  };
+
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
     <div className="product-card">
@@ -58,59 +68,64 @@ function ProductCard({
           </span>
         )}
 
+        {/* Botón de favoritos */}
         <div className="position-absolute top-0 end-0 d-flex flex-column gap-1 m-2">
           <button
             className="btn btn-sm btn-light p-1 rounded hover-effect"
-            onClick={() => onFavorite(product)}
+            onClick={() => toggleFavorite(product)}
           >
-            <i className="bi bi-heart"></i>
-          </button>
-          <button
-            className="btn btn-sm btn-light p-1 rounded hover-effect"
-            onClick={() => onView(product)}
-          >
-            <i className="bi bi-eye"></i>
+            <i
+              className={
+                isFavorite(id) ? "bi bi-heart-fill text-danger" : "bi bi-heart"
+              }
+            ></i>
           </button>
         </div>
       </div>
 
-      <div className="card-body d-flex flex-column">
-        <Link
-          to={`/product/${id}`}
-          className="text-decoration-none text-dark"
-          onClick={onView}
+      {/* Info del producto */}
+      <div className="p-3">
+        <div
+          className="card-body  d-flex flex-column"
+          style={{ height: "130px" }}
         >
-          <h6 className="card-title product-title">{title}</h6>
-        </Link>
+          <Link
+            to={`/product/${id}`}
+            className="text-decoration-none text-dark"
+            onClick={onView}
+          >
+            <h6 className="card-title mb-2 product-title">{title}</h6>
+          </Link>
 
-        {showCategory && (
-          <small className="text-muted mb-1 text-capitalize">{category}</small>
-        )}
-
-        <div className="d-flex align-items-center gap-2 mt-1">
-          <h5 className="mb-0 text-danger">${discountedPrice}</h5>
-          {discountPercentage && (
-            <small className="text-muted text-decoration-line-through">
-              ${price?.toFixed(2)}
+          {showCategory && (
+            <small className="text-muted mb-1 text-capitalize">
+              {category}
             </small>
           )}
-        </div>
 
-        <div className="d-flex align-items-center gap-2 mt-2">
-          {safeRating ? (
-            <>
-              <StarRating rating={safeRating} />
-              <small className="text-body-secondary">
-                ({safeRating.toFixed(1)})
+          <div className="d-flex align-items-center gap-2 mt-1">
+            <h6 className="mb-0 text-danger">S/.{discountedPrice}</h6>
+            {discountPercentage && (
+              <small className="text-muted text-decoration-line-through">
+                S/.{price?.toFixed(2)}
               </small>
-            </>
-          ) : (
-            <small>Sin calificación</small>
-          )}
+            )}
+          </div>
+
+          <div className="d-flex align-items-center gap-2 mt-2">
+            {safeRating ? (
+              <>
+                <StarRating rating={safeRating} />
+                <small className="text-body-secondary">
+                  ({safeRating.toFixed(1)})
+                </small>
+              </>
+            ) : (
+              <small>Sin calificación</small>
+            )}
+          </div>
         </div>
-      </div>
-      <div>
-        <Link>
+        <div className="w-100 d-flex justify-content-center">
           <button
             className="btn-add-to-cart"
             onClick={() => addToCart(product)}
@@ -118,8 +133,10 @@ function ProductCard({
             <i className="bi bi-cart-plus me-2"></i>
             Agregar al carrito
           </button>
-        </Link>
+        </div>
       </div>
+
+      {/* Botón carrito */}
     </div>
   );
 }

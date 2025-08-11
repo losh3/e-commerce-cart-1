@@ -38,12 +38,11 @@ export default function ProductsPage({ selectedCategory }) {
   if (error) return <p>Error: {error}</p>;
   if (products.length === 0) return <p>No hay productos</p>;
   return (
-    <div className="container">
-      <h2>{category}</h2>
-
-      <div className="row">
+    <div className="container my-4">
+      <h4 className="mb-4">Todos los productos</h4>
+      <div className="row g-3">
         {products.map((p) => (
-          <div key={p.id} className="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div key={p.id} className="col-6 col-sm-6 col-md-4 col-lg-3 ">
             <ProductCard
               product={p}
               onFavorite={(prod) => console.log("fav", prod.id)}

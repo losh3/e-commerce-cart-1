@@ -25,7 +25,7 @@ export default function Home({ products }) {
     .slice(0, 8);
   return (
     <div>
-      <div className="p-3">
+      <div className="">
         <div
           id="carouselExampleIndicators"
           className="carousel slide"
@@ -137,10 +137,6 @@ export default function Home({ products }) {
               <div className="d-flex align-items-center"></div>
             </div>
             <div className="d-flex">
-              <div className="timer-badge bg-light text-dark px-3 py-1 rounded-pill me-3">
-                <i className="bi bi-clock me-2"></i>
-                <span>Termina en 24:00:00</span>
-              </div>
               <button
                 className="btn btn-outline-secondary mx-2"
                 onClick={() => handleScroll(flashSalesRef, "left")}
@@ -160,7 +156,7 @@ export default function Home({ products }) {
               <div
                 key={product.id}
                 style={{
-                  flex: "0 0 clamp(200px, 25%, 280px)", // responsive
+                  flex: "0 0 clamp(200px, 25%, 250px)", // responsive
                 }}
               >
                 <ProductCard product={product} />

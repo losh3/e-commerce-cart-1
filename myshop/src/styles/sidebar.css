@@ -22,7 +22,6 @@
 .sidebar-content {
   height: 100%;
   overflow-y: auto;
-  padding: 1rem;
 }
 
 /* overlay para oscurecer el fondo cuando se abre */

@@ -2,6 +2,7 @@ import { useState } from "react";
 import CategoriaDropdown from "../components/CategoryDropdown";
 import { NavLink } from "react-router-dom";
 import "../styles/sidebar.css";
+import logotipo from "../assets/logotipo.png";
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const [openIndex, setOpenIndex] = useState(null); // corregido
@@ -29,12 +30,11 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       icon: "bi bi-gender-female",
       label: "Mujeres",
       items: [
-        { label: "Vestidos", value: "womens-dresses" },
+        { label: "Vestidos", value: ["womens-dresses", "tops"] },
         { label: "Calzado", value: "womens-shoes" },
         { label: "Bolsos", value: "womens-bags" },
         { label: "Relojes", value: "womens-watches" },
         { label: "Joyeria", value: "womens-jewellery" },
-        { label: "Tops", value: "tops" },
       ],
     },
     {
@@ -83,9 +83,27 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           onClick={() => setSidebarOpen(false)}
         ></div>
       )}
-      <aside className={`sidebar ${sidebarOpen ? "open" : "hidden"}`}>
+      <aside className={`sidebar px-3 ${sidebarOpen ? "open" : "hidden"}`}>
+        <div
+          className="sidebar-header d-flex align-items-center  border-bottom"
+          style={{ height: "80px" }}
+        >
+          {/* Botón toggle */}
+          <button
+            className="btn btn-outline-secondary me-2"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+          >
+            <i className="bi bi-list"></i>
+          </button>
+
+          {/* Logo */}
+          <NavLink className="navbar-brand m-0" to="/">
+            <img src={logotipo} alt="Logo" height="50" />
+          </NavLink>
+        </div>
+
         {sidebarOpen && (
-          <div className="sidebar-content bg-light">
+          <div className="sidebar-content bg-light ">
             <nav className="nav flex-column">
               {categorias.map((cat, idx) => (
                 <CategoriaDropdown
@@ -99,17 +117,6 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 />
               ))}
             </nav>
-            <div>
-              <NavLink>
-                <i className="bi bi-facebook"></i>
-              </NavLink>
-              <NavLink>
-                <i className="bi bi-twitter-x"></i>
-              </NavLink>
-              <NavLink>
-                <i className="bi bi-instagram"></i>
-              </NavLink>
-            </div>
           </div>
         )}
       </aside>

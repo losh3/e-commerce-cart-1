@@ -6,11 +6,14 @@ import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "./context/CartContext.jsx";
 import App from "./App.jsx";
 import "./index.css";
+import { FavoritesProvider } from "./context/FavoriteContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <CartProvider>
-      <App />
-    </CartProvider>
+    <FavoritesProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </FavoritesProvider>
   </BrowserRouter>
 );

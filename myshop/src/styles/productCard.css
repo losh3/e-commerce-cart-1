@@ -1,40 +1,35 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
 
-  .product-card {
-    position: relative;
-    padding: 12px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .product-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  
-  /* Botón oculto por defecto */
-  .btn-add-to-cart {
-    width: 80%;
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4a4a4a;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-weight: 0;
-    opacity: 0;
-    pointer-events: none; /* Evita click mientras está oculto */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  /* Aparece cuando se pasa el mouse */
-  .product-card:hover .btn-add-to-cart {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(-4px);
-  }
-  
-  
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Botón oculto por defecto */
+/* Botón base */
+.btn-add-to-cart {
+
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--bs-danger);
+  background-color: transparent;
+  color: var(--bs-danger);
+  border-radius: 8px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover: relleno y cambio de color */
+.btn-add-to-cart:hover {
+  background-color: var(--bs-danger);
+  color: #fff;
+}

@@ -11,21 +11,16 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 80px;
   background: white;
   z-index: 1100; 
 
 }
 
-/* Cuerpo del layout (sidebar + contenido) */
-.layout-body {
-  display: flex;
-  flex-grow: 1;
-}
 
 /* Contenido principal */
 .main-content {
   flex-grow: 1;
-  padding: 20px;
+
   transition: margin-left 0.3s; /* Para animación en desktop */
 }
