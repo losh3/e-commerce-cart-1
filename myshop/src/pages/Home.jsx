@@ -63,33 +63,33 @@ export default function Home({ products }) {
             <div className="carousel-item active">
               <img
                 src={banner_1}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={banner_2}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={banner_3}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={banner_4}
-                className="d-block w-100 h-100 object-fit-cover"
+                className="d-block w-100 object-fit-cover"
                 alt="Promoción"
-                loading="lazy" // Carga diferida
+                loading="lazy"
               />
             </div>
           </div>

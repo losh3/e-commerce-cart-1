@@ -1,4 +1,3 @@
-
 /* Agrega esto a tu home.css */
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
@@ -18,15 +17,16 @@
   flex: 0 0 auto;
   width: 250px;
 }
-.carousel-item {
-  height: 600px; /* aquí ajustas la altura que quieras */
-  object-fit: cover; /* hace que se recorte manteniendo proporción */
-  object-position: center center; /* centra la imagen vertical y horizontalmente */
+.carousel-item img {
+  width: 100%;
+  height: 450px; /* ajusta el alto que quieras */
+  object-fit: cover; /* recorta manteniendo proporción */
+  object-position: center; /* centra el recorte */
 }
 
 @media (max-width: 768px) {
-  .carousel-inner.ratio {
-    --bs-aspect-ratio: 50%; /* reduce altura manteniendo proporción */
+  .carousel-item img {
+    height: 200px; /* más bajo en móvil */
   }
 }
 
